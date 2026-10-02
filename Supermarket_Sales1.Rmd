@@ -1,0 +1,209 @@
+---
+title: "Supermarket Sales Analysis"
+author: "Vaghasiya Meet R."
+output: html_document
+---
+
+# Introduction
+
+This project analyzes supermarket sales data using R.
+
+The main purpose of this project is to understand sales,
+product performance, customer information, and payment methods.
+
+# Objectives
+
+- To import supermarket sales data.
+- To clean and preprocess the data.
+- To perform statistical analysis.
+- To create graphs and plots.
+- To interpret the results.
+- To identify important findings from the data.
+
+# Data Importing
+
+First, we import the supermarket sales dataset into R.
+
+```{r}
+data <- read.csv("supermarket_sales.csv.csv")
+
+head(data)
+```
+
+# Data Cleaning and Preprocessing
+
+First, we check the structure of the dataset.
+
+```{r}
+str(data)
+```
+
+Now, we check for missing values.
+
+```{r}
+colSums(is.na(data))
+```
+
+Now, we check for duplicate records.
+
+```{r}
+sum(duplicated(data))
+```
+
+Finally, we display the summary of the dataset.
+
+```{r}
+summary(data)
+```
+
+# Data Analysis
+
+## Total Sales
+
+```{r}
+total_sales <- sum(data$Total_Sales)
+total_sales
+```
+
+## Average Sales
+
+```{r}
+average_sales <- mean(data$Total_Sales)
+average_sales
+```
+
+## Maximum Sales
+
+```{r}
+maximum_sales <- max(data$Total_Sales)
+maximum_sales
+```
+
+## Minimum Sales
+
+```{r}
+minimum_sales <- min(data$Total_Sales)
+minimum_sales
+```
+
+## Total Quantity Sold
+
+```{r}
+total_quantity <- sum(data$Quantity)
+total_quantity
+```
+
+# Graphs and Plots
+
+## 1. Sales by Product Line
+
+```{r}
+sales_by_product <- aggregate(Total_Sales ~ Product_Line, data = data, sum)
+
+barplot(
+  sales_by_product$Total_Sales,
+  names.arg = sales_by_product$Product_Line,
+  main = "Total Sales by Product Line",
+  xlab = "Product Line",
+  ylab = "Total Sales"
+)
+```
+
+## 2. Sales by Branch
+
+```{r}
+sales_by_branch <- aggregate(Total_Sales ~ Branch, data = data, sum)
+
+barplot(
+  sales_by_branch$Total_Sales,
+  names.arg = sales_by_branch$Branch,
+  main = "Total Sales by Branch",
+  xlab = "Branch",
+  ylab = "Total Sales"
+)
+```
+
+## 3. Sales Distribution
+
+```{r}
+hist(
+  data$Total_Sales,
+  main = "Distribution of Total Sales",
+  xlab = "Total Sales",
+  ylab = "Frequency"
+)
+```
+
+## 4. Quantity vs Total Sales
+
+```{r}
+plot(
+  data$Quantity,
+  data$Total_Sales,
+  main = "Quantity vs Total Sales",
+  xlab = "Quantity",
+  ylab = "Total Sales"
+)
+```
+
+## 5. Sales by Payment Method
+
+```{r}
+sales_by_payment <- aggregate(Total_Sales ~ Payment, data = data, sum)
+
+barplot(
+  sales_by_payment$Total_Sales,
+  names.arg = sales_by_payment$Payment,
+  main = "Total Sales by Payment Method",
+  xlab = "Payment Method",
+  ylab = "Total Sales"
+)
+```
+# Interpretation of Results
+
+## Product Line Analysis
+
+The bar chart shows the total sales for different product lines.
+It helps us compare which product categories generate more sales.
+
+## Branch Analysis
+
+The branch-wise sales chart shows the difference in sales between
+different supermarket branches.
+
+## Sales Distribution
+
+The histogram shows how the total sales values are distributed.
+It helps us understand the general pattern of sales.
+
+## Quantity and Sales Analysis
+
+The scatter plot shows the relationship between quantity sold and
+total sales. It helps us understand whether higher quantities are
+associated with higher sales.
+
+## Payment Method Analysis
+
+The payment method chart shows the total sales made through different
+payment methods such as Cash, Card, and UPI.
+# Findings
+
+The analysis of supermarket sales data provides the following findings:
+
+- Different product lines have different levels of sales.
+- Sales vary among the different supermarket branches.
+- The quantity of products sold has a relationship with total sales.
+- Customers use different payment methods such as Cash, Card, and UPI.
+- Statistical analysis helps us understand the overall sales performance.
+- Graphs make it easier to compare sales and identify patterns in the data.
+
+# Conclusion
+
+This project analyzed supermarket sales data using R.
+
+The data was imported, cleaned, and statistically analyzed.
+Different graphs were created to understand sales patterns,
+product performance, branches, quantity, and payment methods.
+
+R is useful for analyzing data and presenting the results
+in a simple and understandable form.
